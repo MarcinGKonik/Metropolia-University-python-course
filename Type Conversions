@@ -1,0 +1,26 @@
+""" Exercise description
+
+In this exercise the aim is to try out different datatypes. Start by defining two variables, and assign the first variable the float value 10.6411. The second variable gets a string "Stringline!" as a value.
+
+Convert the first variable to an integer, and multiply the variable with the string by 2. After this, finalize the program to print out the results in the following way:
+
+Integer conversion cannot do roundings: 10
+Multiplying strings also causes trouble: Stringline!Stringline!   """
+
+#Solution
+
+# Define the variables with specified data types
+variable1 = 10.6411
+variable2 = "Stringline!"
+
+# Convert the float to an integer
+converted_variable1 = int(variable1)
+
+# Multiply the string by 2
+multiplied_variable2 = variable2 * 2
+
+# Print out the results
+print("Integer conversion cannot do roundings:", converted_variable1)
+print("Multiplying strings also causes trouble:", multiplied_variable2)
+
+
