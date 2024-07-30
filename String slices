@@ -1,0 +1,32 @@
+""" Exercise description 
+The last exercise in this chapter focuses on string slices. Define a variable and assign it a string "desserts" as a value. Then create three new variables, and assign them values by slicing the A) first 4 characters B) the last 4 characters and C) the entire string backwards as given values. Then make the program print the answers in the following way:
+
+The first 4 characters were: dess
+The last 4 characters were: erts
+The string backwards was: stressed
+
+Example output:
+
+The first 4 characters were: dess
+The last 4 characters were: erts
+The string backwards was: stressed """
+
+#Solution
+
+# Assign the string to a variable
+original_string = "desserts"
+
+# Slice the first 4 characters
+first_four = original_string[:4]
+
+# Slice the last 4 characters
+last_four = original_string[-4:]
+
+# Reverse the entire string
+string_backwards = original_string[::-1]
+
+# Print the results
+print("The first 4 characters were:", first_four)
+print("The last 4 characters were:", last_four)
+print("The string backwards was:", string_backwards)
+
