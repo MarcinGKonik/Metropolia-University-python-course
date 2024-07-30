@@ -1,0 +1,24 @@
+""" Exercise desription
+
+In this program the objective is to understand how the layout-characters (\t and \n} and print in general works. By using only the print command, make the interpreter to print out the following text:
+
+>>> 
+
+This here is divided to several lines:
+I am still in the same print-command.
+	Name:	Peter
+	Job:	Babysitter
+>>> 
+
+With the first two lines it is possible to just use the line break. On the latter two tabulation is also needed.
+Example output:
+
+This here is divided to several lines:
+I am still in the same print-command.
+	Name:	Peter
+	Job:	Babysitter   """
+
+#Solution
+
+print("This here is divided to several lines:\nI am still in the same print-command.\n\tName:\tPeter\n\tJob:\tBabysitter")
+
