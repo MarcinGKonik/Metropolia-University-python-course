@@ -1,0 +1,43 @@
+""" Exercise description
+This exercise continues with the code made in the last exercise. In the last exercise one of the objectives was to create a class with two attributes, teamcolor and points. Now, add two methods called "tellscore" and "goal". When the method "tellscore" is called, the objects prints out "I am [teamcolor], we have [points] points!", and if the method goal is called, the object adds one point to the attribute points. Also make the attribute points a private attribute, and to accommodate that change, make the neccessary changes to get the class to work properly.
+
+Then modify the program's main function so that instead of printing the data itself, the main function first calls the method "goal" and then the method "tellscore". If everything went correctly, the program should print out this:
+
+>>> 
+I am Blue, we have 1 points!
+>>> 
+		
+
+Example output:
+
+I am Blue, we have 1 points! """
+
+#Solution
+
+class Player:
+    def __init__(self, teamcolor, points):
+        self.teamcolor = teamcolor
+        self.__points = points  # Make points a private attribute
+
+    def tellscore(self):
+        print(f"I am {self.teamcolor}, we have {self.__points} points!")
+
+    def goal(self):
+        self.__points += 1
+
+    # Add a method to get the current points
+    def get_points(self):
+        return self.__points
+
+def main():
+    # Create a Player object with team color "Blue" and points 0
+    player = Player("Blue", 0)
+    
+    # Call the goal method to add a point
+    player.goal()
+    
+    # Call the tellscore method to print the current score
+    player.tellscore()
+
+if __name__ == "__main__":
+    main()
