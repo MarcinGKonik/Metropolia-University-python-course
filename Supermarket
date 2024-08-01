@@ -1,0 +1,72 @@
+""" Exercise description Make simple Supermarket -program,
+
+    having 10 products with prices in a list as follows:[10,14,22,33,44,13,22,55,66,77].
+    asking product number from 1 to 10 and summing its price to totalsum and printing product number and price for every product as in example.
+    asking products until user gives '0' to quit the program (while-loop).
+    printing  "Total:" and the total sum of prices.
+    asking "Payment:" from user and printing "Change:" and finally  calculating and printing the amount of change (payment - totalsum) to customer.
+
+You must use in this program: while, input
+Example output:
+
+Supermarket
+===========
+Please select product (1-10) 0 to Quit: 3
+Product:  3 Price:  22
+Please select product (1-10) 0 to Quit: 5
+Product:  5 Price:  44
+Please select product (1-10) 0 to Quit: 7
+Product:  7 Price:  22
+Please select product (1-10) 0 to Quit: 1
+Product:  1 Price:  10
+Please select product (1-10) 0 to Quit: 6
+Product:  6 Price:  13
+Please select product (1-10) 0 to Quit: 10
+Product:  10 Price:  77
+Please select product (1-10) 0 to Quit: 0
+Total:  188
+Payment: 200
+Change:  12 """
+
+#Solution
+
+def supermarket():
+    prices = [10, 14, 22, 33, 44, 13, 22, 55, 66, 77]
+    total_sum = 0
+    
+    print("Supermarket")
+    print("===========")
+    
+    while True:
+        choice = input("Please select product (1-10) 0 to Quit: ")
+        
+        try:
+            product_number = int(choice)
+            if product_number == 0:
+                break
+            elif 1 <= product_number <= 10:
+                price = prices[product_number - 1]
+                total_sum += price
+                print(f"Product:  {product_number} Price:  {price}")
+            else:
+                print("Invalid product number. Please select a number between 1 and 10.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+    
+    print(f"Total:  {total_sum}")
+    
+    while True:
+        try:
+            payment = float(input("Payment: "))
+            if payment >= total_sum:
+                break
+            else:
+                print("Insufficient payment. Please provide enough money.")
+        except ValueError:
+            print("Invalid input. Please enter a valid amount.")
+    
+    change = payment - total_sum
+    print(f"Change:  {int(change) if change.is_integer() else change}")
+
+if __name__ == "__main__":
+    supermarket()
