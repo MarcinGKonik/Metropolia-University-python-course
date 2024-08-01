@@ -1,0 +1,43 @@
+""" Exercise description 
+Make class Employee and its initialization method. Employee-class will have 2 attributes: id and name.
+
+Make program,
+
+    filling the list with objects of Employee class. Id is a serial number from 1 and name will be asked from user.
+    ending when user gives '0' instead of a name. 
+    in the end printing all Employees from list in a format shown in example below.
+
+You must use: class, def, for
+Example output:
+
+Please enter employee name (0 to quit):Jane Doe
+Please enter employee name (0 to quit):John Johnson
+Please enter employee name (0 to quit):Richard Roe
+Please enter employee name (0 to quit):0
+Id: 1 Name: Jane Doe
+Id: 2 Name: John Johnson
+Id: 3 Name: Richard Roe
+"""
+
+#Solution
+
+class Employee:
+    def __init__(self, id, name):
+
+
+        self.id = id
+        self.name = name
+
+employees = []
+id = 1
+
+while True:
+    name = input("Please enter employee name (0 to quit): ")
+    if name == '0':
+        break
+    employee = Employee(id, name)
+    employees.append(employee)
+    id += 1
+
+for employee in employees:
+   
