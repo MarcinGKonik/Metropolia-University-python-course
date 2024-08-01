@@ -1,0 +1,133 @@
+""" Exercise desciption
+
+The last exercise in this chapter continues with the exercise from the last chapter, the calculator. In this exercise, expand the existing code by implementing the following new features: (A) Calculator does not automatically quit when the result is given, allowing user to do new calculations. The user has to select "6" in the menu to exit the program. (B) The calculator shows the selected numbers in the main menu by printing "Current numbers:" and the user-given input. By selecting "5" in the calculator menu, the user can change the given numbers. When implemented correctly, the program prints out following:
+
+Calculator
+Give the first number: 100
+Give the second number: 25
+(1) +
+(2) -
+(3) *
+(4) /
+(5) Change numbers
+(6) Quit
+Current numbers: 100 25
+Please select something (1-6): 5
+Give the first number: 10
+Give the second number: 30
+
+(1) +
+(2) -
+(3) *
+(4) /
+(5) Change numbers
+(6) Quit
+Current numbers: 10 30
+Please select something (1-6): 1
+The result is: 40
+
+(1) +
+(2) -
+(3) *
+(4) /
+(5) Change numbers
+(6) Quit
+Current numbers: 10 30
+Please select something (1-6): 6
+Thank you!
+>>> 
+
+Again, implement the program within one large while True-segment, which is terminated with break if the user selects the option "6".
+Example output:
+
+Calculator
+Give the first number: 50
+Give the second number: 5
+(1) +
+(2) -
+(3) *
+(4) /
+(5)Change numbers
+(6)Quit
+Current numbers: 50 5
+Please select something (1-6): 1
+The result is: 55
+(1) +
+(2) -
+(3) *
+(4) /
+(5)Change numbers
+(6)Quit
+Current numbers: 50 5
+Please select something (1-6): 2
+The result is: 45
+(1) +
+(2) -
+(3) *
+(4) /
+(5)Change numbers
+(6)Quit
+Current numbers: 50 5
+Please select something (1-6): 4
+The result is: 10.0
+(1) +
+(2) -
+(3) *
+(4) /
+(5)Change numbers
+(6)Quit
+Current numbers: 50 5
+Please select something (1-6): 6
+Thank you!   """"
+
+#Solution
+
+def get_numbers():
+    first_number = int(input("Give the first number: "))
+    second_number = int(input("Give the second number: "))
+    return first_number, second_number
+
+def show_menu():
+    print("""
+(1) +
+(2) -
+(3) *
+(4) /
+(5) Change numbers
+(6) Quit
+""")
+
+def process_choice(choice, num1, num2):
+    if choice == "1":
+        result = num1 + num2
+    elif choice == "2":
+        result = num1 - num2
+    elif choice == "3":
+        result = num1 * num2
+    elif choice == "4":
+        if num2 != 0:
+            result = num1 / num2
+        else:
+            print("Cannot divide by zero.")
+            return num1, num2
+    elif choice == "5":
+        return get_numbers()  # This will prompt user for new numbers
+    else:
+        return num1, num2  # No change in numbers
+
+    print(f"The result is: {result}")
+    return num1, num2  # Return the original numbers unless they were changed with option 5
+
+print("Calculator")
+first_number, second_number = get_numbers()
+
+while True:
+    show_menu()
+    print(f"Current numbers: {first_number} {second_number}")
+    user_choice = input("Please select something (1-6): ")
+
+    if user_choice == "6":
+        print("Thank you!")
+        break
+    else:
+        first_number, second_number = process_choice(user_choice, first_number, second_number)
