@@ -1,0 +1,113 @@
+""" Exercise description
+The last exercise in this chapter adds a small feature to the other continuous exercise project, the notebook. In this exercise, add a feature which includes the date and time of the written note to the program. The program works as earlier, but saves data in the form "[note]:::[date and time]" meaning that there is a three-colon separator between the note and timestamp. The timestamp can be generated as follows:
+
+	
+>>> import time		
+
+>>> time.strftime("%X %x")
+'19:01:34 01/03/09'
+>>> 
+
+This returns the date and time in a nice, compact string. When working correctly, the program prints the following:
+
+			
+>>> 
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 2
+Write a new note: Call mom.
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 1
+Call mom.:::11:44:41 04/25/11
+
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 4
+Notebook shutting down, thank you.
+>>> 
+
+Example output:
+
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 2
+Write a new note: Play football
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 1
+Play football:::21:11:24 11/04/11
+
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 4
+Notebook shutting down, thank you. """
+
+#Solution
+
+import time
+
+def read_notebook():
+    try:
+        with open("notebook.txt", "r") as f:
+            content = f.read()
+            if content:
+                print(content)
+            else:
+                print("The notebook is empty.")
+    except FileNotFoundError:
+        print("The notebook is empty.")
+
+def add_note():
+    note = input("Write a new note: ")
+    timestamp = time.strftime("%X %x")
+    entry = f"{note}:::{timestamp}\n"
+    with open("notebook.txt", "a") as f:
+        f.write(entry)
+
+def empty_notebook():
+    with open("notebook.txt", "w") as f:
+        pass  # This will empty the file
+
+def main():
+    while True:
+        print("\n(1) Read the notebook")
+        print("(2) Add note")
+        print("(3) Empty the notebook")
+        print("(4) Quit")
+
+        choice = input("Please select one: ")
+
+        if choice == '1':
+            read_notebook()
+        elif choice == '2':
+            add_note()
+        elif choice == '3':
+            empty_notebook()
+        elif choice == '4':
+            print("Notebook shutting down, thank you.")
+            break
+        else:
+            print("Invalid choice, please select again.")
+
+if __name__ == "__main__":
+    main()
+
