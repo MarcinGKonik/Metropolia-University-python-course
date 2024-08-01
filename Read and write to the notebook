@@ -1,0 +1,133 @@
+""" Exercise description
+The last exercise in this chapter is the first part of the second multi-part assignment of this course, the notebook. In this notebook the user is able to add, read and delete notes from a separate note file "notebook.txt".
+
+Create a program which allows the user to
+(1) Read the contents of the notebook
+(2) Add notes to the file or
+(3) Delete all of the notes.
+If the user selects 1, the entire notebook file is printed to the screen, if 2 then the program prompts "Write a new note: ", and adds the written note as the last line into the file with a trailing line break "\n". If the player selects 3, the file is emptied and the message "Notes deleted" will be shown. Also add the option (4) Quit, which ends the program, printing "Notebook shutting down, thank you.". With other selections the program prompts "Incorrect selection". When working, the program prints following:
+
+>>> 
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 2
+Write a new note: Buy new tires
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 2
+Write a new note: Buy new headlights
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 1
+Buy new tires
+Buy new headlights
+
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 3
+Notes deleted.
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 4
+Notebook shutting down, thank you.
+>>>  
+
+Notice that the fastest way to delete a file's contents is to open it with mode "w" and close it immediately.
+Example output:
+
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 1
+Buy milk
+
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 2
+Write a new note: Buy car
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 1
+Buy milk
+Buy car
+
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+
+Please select one: 4
+Notebook shutting down, thank you. """
+
+#Solution
+
+def display_menu():
+    print("""
+(1) Read the notebook
+(2) Add note
+(3) Empty the notebook
+(4) Quit
+""")
+
+def read_notebook(file_name):
+    try:
+        with open(file_name, "r") as file:
+            contents = file.read()
+            print(contents)
+    except FileNotFoundError:
+        print("Notebook is empty.")
+
+def add_note(file_name):
+    note = input("Write a new note: ")
+    with open(file_name, "a") as file:
+        file.write(note + "\n")
+
+def empty_notebook(file_name):
+    # Opening a file in write mode and closing it immediately empties the file.
+    open(file_name, "w").close()
+    print("Notes deleted.")
+
+def main():
+    file_name = "notebook.txt"
+    
+    while True:
+        display_menu()
+        choice = input("Please select one: ")
+        
+        if choice == "1":
+            read_notebook(file_name)
+        elif choice == "2":
+            add_note(file_name)
+        elif choice == "3":
+            empty_notebook(file_name)
+        elif choice == "4":
+            print("Notebook shutting down, thank you.")
+            break
+        else:
+            print("Incorrect selection")
+
+if __name__ == "__main__":
+    main()
