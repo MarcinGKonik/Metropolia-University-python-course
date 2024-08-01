@@ -1,0 +1,78 @@
+"""Exercise description
+Define first classes
+
+    PayrollSystem, having method calculate_payroll and getting a list of employees as a parameter. Method should calculate and print payroll for employees.
+    SalaryEmployee, a subclass of Employee. SalaryEmployee has its own attribute monthly_salary and method calculate_salary, which will return the monthly salary of an employee.
+
+Finally make then program,
+
+    asking employee name as in previous Employee-exercise and also asking monthly salary for SalaryEmployee-class.
+    creating SalaryEmployee-objects and store them into a list.
+    ending when user gives '0' instead of a name. 
+    using at the end PayrollSystem to print Payroll for Employees in a format shown in the example below.
+
+Example output:
+
+Please enter employee name (0 to quit):Jane Doe
+Please enter salary:5500
+Please enter employee name (0 to quit):John Johnson
+Please enter salary:4500
+Please enter employee name (0 to quit):Richard Roe
+Please enter salary:5050
+Please enter employee name (0 to quit):0
+Employee Payroll
+================
+Payroll for: 1 - Jane Doe
+- Check amount: 5500
+
+Employee Payroll
+================
+Payroll for: 2 - John Johnson
+- Check amount: 4500
+
+Employee Payroll
+================
+Payroll for: 3 - Richard Roe
+- Check amount: 5050 """
+
+#Solution
+
+class Employee:
+    def __init__(self, name):
+        self.name = name
+
+class SalaryEmployee(Employee):
+    def __init__(self, name, monthly_salary):
+        super().__init__(name)
+        self.monthly_salary = monthly_salary
+    
+    def calculate_salary(self):
+        return int(self.monthly_salary)
+
+class PayrollSystem:
+    def calculate_payroll(self, employees):
+        for i, employee in enumerate(employees, start=1):
+            print("Employee Payroll")
+            print("================")
+            print(f"Payroll for: {i} - {employee.name}")
+            print(f"- Check amount: {employee.calculate_salary()}")
+            print()
+
+def main():
+    employees = []
+    
+    while True:
+        name = input("Please enter employee name (0 to quit):").strip()
+        if name == '0':
+            break
+        monthly_salary = float(input("Please enter salary:").strip())
+        employee = SalaryEmployee(name, monthly_salary)
+        employees.append(employee)
+    
+    payroll_system = PayrollSystem()
+    payroll_system.calculate_payroll(employees)
+
+if __name__ == "__main__":
+    main()
+
+
